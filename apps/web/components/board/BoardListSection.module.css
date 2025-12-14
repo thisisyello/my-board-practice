@@ -1,0 +1,42 @@
+.section {
+    margin-bottom: 0px;
+}
+
+.titleRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 0 16px 0 16px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.writeBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffc83d;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition:  0.3s;
+}
+
+.writeBtn:hover {
+    background: #e6b200;
+}
+
+.listBox {
+    background: #ffffff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}

@@ -1,0 +1,56 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 12px;
+  border-bottom: 1px solid #e5e7eb;
+    transition: 0.3s;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #ffc83d;
+  flex: 0 0 auto;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 720px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 0 0 auto;
+}
+
+.author {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.date {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.item:hover {
+  background: #fff4cc;
+}

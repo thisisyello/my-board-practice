@@ -1,0 +1,68 @@
+.wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 10px 12px;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+}
+
+.btn {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+
+    font-size: 13px;
+    color: #374151;
+
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    background: #fff4cc;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    color: #9ca3af;
+}
+
+.pages {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pageBtn {
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+
+    min-width: 34px;
+    height: 34px;
+
+    font-size: 13px;
+    color: #374151;
+
+    border-radius: 8px;
+}
+
+.pageBtn:hover {
+    background: #fff4cc;
+}
+
+.active {
+    background: #ffc83d;
+    color: #ffffff;
+    font-weight: 700;
+}
