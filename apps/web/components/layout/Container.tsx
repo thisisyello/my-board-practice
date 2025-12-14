@@ -5,10 +5,10 @@ type ContainerProps = {
   className: string;
 };
 
-export default function Container({ children, className }: ContainerProps) {
+export default function Container({children}: ContainerProps) {
   return (
-    <main className={`${styles.container}${className ? ` ${className}` : ""}`}>
-      {children}
+    <main className={styles.container}>
+        {children}
     </main>
   );
 }

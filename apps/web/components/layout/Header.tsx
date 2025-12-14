@@ -11,10 +11,10 @@ export default function Header() {
         </Link>
 
         <div className={styles.actions}>
-          <Link href="/login" className={styles.login}>
+          <Link href="/auth/login" className={styles.login}>
             로그인
           </Link>
-          <Link href="/signup" className={styles.signup}>
+          <Link href="/auth/signup" className={styles.signup}>
             회원가입
           </Link>
         </div>

@@ -1,0 +1,32 @@
+.wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.logo {
+    font-size: 56px;
+    font-weight: 700;
+    color: #ffc83d;
+    margin-bottom: 24px;
+}
+
+.card {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1f2937;
+    margin: 16px 0 16px 0;
+
+}

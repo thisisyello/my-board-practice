@@ -2,15 +2,13 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Container from "@/components/layout/Container";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout(
+  {children}: Readonly<{children: React.ReactNode;}>
+) {
   return (
     <html lang="ko">
       <body>
-        {/* <Header /> */}
+        <Header />
         <Container>
           {children}
         </Container>
