@@ -11,19 +11,25 @@ export default function NewBoardSection() {
 
       <div className={styles.grid}>
         <BoardCard
-            title="title"
-            author="name"
-            date="2025.12.14"
+          id = {1}
+          title="title1"
+          author="name"
+          date="2025.12.14"
+          likes={0}
         />
         <BoardCard
-            title="title"
-            author="name"
-            date="2025.12.14"
+          id = {2}
+          title="title2"
+          author="name"
+          date="2025.12.14"
+          likes={0}
         />
         <BoardCard
-            title="title"
-            author="name"
-            date="2025.12.14"
+          id = {3}
+          title="title3"
+          author="name"
+          date="2025.12.14"
+          likes={0}
         />
       </div>
     </section>

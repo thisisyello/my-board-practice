@@ -1,0 +1,54 @@
+.form {
+    background: #ffffff;
+    border-radius: 4px;
+    display: grid;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 16px 24px;
+}
+
+.label {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.textarea {
+    min-height: 120px;
+    border-radius: 4px;
+    border: 1px solid #e5e7eb;
+    padding: 8px;
+    outline: none;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.textarea:focus {
+    border-color: #ffc83d;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px 0 0;
+}
+
+.hint {
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background: #ffc83d;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s
+}
+
+.btn:hover {
+    background: #e6b200;
+}

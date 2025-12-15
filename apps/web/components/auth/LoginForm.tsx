@@ -7,16 +7,10 @@ export default function LoginForm() {
   return (
     <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
       <div className={styles.field}>
-        <label className={styles.label} htmlFor="email">
-          이메일
+        <label className={styles.label}>
+          아이디
         </label>
-        <input
-          id="email"
-          className={styles.input}
-          type="email"
-          placeholder="email@example.com"
-          autoComplete="email"
-        />
+        <input id="id" className={styles.input} placeholder="아이디"/>
       </div>
 
       <div className={styles.field}>
@@ -38,8 +32,8 @@ export default function LoginForm() {
 
       <div className={styles.row}>
         <div className={styles.helper}>
-          계정이 없나요?{" "}
-          <Link className={styles.link} href="/signup">
+          계정이 없나요?
+          <Link className={styles.link} href="/auth/signup">
             회원가입
           </Link>
         </div>

@@ -17,6 +17,14 @@
 }
 
 .meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font-size: 12px;
-    color: #ffc83d;
+    color: #9ca3af;
+}
+
+.like {
+    margin-left: auto;
+    color: #1f2937;
 }

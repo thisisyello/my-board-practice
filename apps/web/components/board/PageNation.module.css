@@ -17,13 +17,9 @@
 }
 
 .btn {
-    border: 0;
     background: transparent;
     cursor: pointer;
-
     font-size: 13px;
-    color: #374151;
-
     padding: 6px 10px;
     border-radius: 8px;
 }
@@ -44,15 +40,12 @@
 }
 
 .pageBtn {
-    border: 1px solid transparent;
     background: transparent;
     cursor: pointer;
-
     min-width: 34px;
     height: 34px;
 
     font-size: 13px;
-    color: #374151;
 
     border-radius: 8px;
 }

@@ -33,7 +33,7 @@ export default function SignupForm() {
 
       <div className={styles.helper}>
         이미 계정이 있나요?{" "}
-        <Link className={styles.link} href="/login">
+        <Link className={styles.link} href="/auth/login">
           로그인
         </Link>
       </div>

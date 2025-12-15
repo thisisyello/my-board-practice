@@ -1,0 +1,29 @@
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #1f2937;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #fff4cc;
+}
+
+.danger {
+  border-color: #fca5a5;
+}
+
+.danger:hover {
+  background: #fee2e2;
+}

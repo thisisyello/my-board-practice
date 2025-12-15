@@ -1,0 +1,23 @@
+.likeBtn {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #1f2937;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.likeBtn:hover {
+  background: #fff4cc;
+}
+
+.active {
+  background: #ffc83d;
+  border-color: #e6b200;
+}
