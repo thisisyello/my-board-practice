@@ -4,6 +4,7 @@ export interface Comment {
     id: number;
     content: string;
     createdAt: string;
+    postId: number;
     userId: number;
     user: {
         userName: string;
