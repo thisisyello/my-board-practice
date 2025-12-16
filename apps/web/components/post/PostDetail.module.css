@@ -1,60 +1,72 @@
 .wrap {
-  max-width: 760px;
-  margin: 0 auto;
+  max-width: 720px;
+  margin: 60px auto 120px auto;
+  padding: 0 24px;
 }
 
 .back {
-  display: inline-block;
-  margin-bottom: 14px;
-  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 40px;
+  font-size: 16px;
+  font-weight: 500;
   color: #6b7280;
   text-decoration: none;
-  /* padding: 0 16px; */
+  cursor: pointer;
+  transition: color 0.2s;
 }
 
 .back:hover {
-  text-decoration: underline;
+  color: #111827;
 }
 
 .title {
-  font-size: 24px;
-  font-weight: 900;
+  font-size: 42px;
+  font-weight: 800;
   color: #111827;
-  margin: 0 0 8px;
-  padding: 0 16px;
+  margin: 0 0 32px 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  font-size: 14px;
-  margin-bottom: 16px;
-  padding: 0 16px;
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #f3f4f6;
 }
 
 .metaLeft {
   display: flex;
-  color: #9ca3af;
-  align-items: center;
-  gap: 6px;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 15px;
+  color: #4b5563;
 }
 
 .metaRight {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .card {
-  background: #ffffff;
-  border-radius: 4px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  padding: 24px;
-  line-height: 1.7;
-  color: #1f2937;
-  margin-bottom: 24px;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  line-height: 1.8;
+  color: #374151;
+  font-size: 17px;
+  margin-bottom: 80px;
   white-space: pre-wrap;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 80px;
+  color: #6b7280;
+  font-size: 16px;
 }
 

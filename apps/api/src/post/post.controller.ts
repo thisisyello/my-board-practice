@@ -38,6 +38,11 @@ export class PostController {
     return this.postService.findMyPosts(req.user.id, +page, +limit);
   }
 
+  @Get('best')
+  async findBest(@Query('limit') limit: string = '3') {
+    return this.postService.findBest(+limit);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.postService.findOne(+id);

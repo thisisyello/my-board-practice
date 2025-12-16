@@ -9,6 +9,7 @@ import { commentApi } from "@/lib/commentApi";
 import BoardListItem from "@/components/board/BoardListItem";
 import PageNation from "@/components/board/PageNation";
 import Link from "next/link";
+import styles from "./page.module.css";
 
 type Post = {
   id: number;
@@ -81,42 +82,34 @@ export default function MyPage() {
   if (!user) return null;
 
   return (
-    <div className="max-w-[800px] mx-auto my-10 px-5">
-      <h1 className="text-2xl font-bold mb-5">마이페이지</h1>
-      <div className="mb-10 text-base text-gray-600">
+    <div className={styles.container}>
+      <h1 className={styles.title}>마이페이지</h1>
+      <div className={styles.welcome}>
         <strong>{user.userName}</strong>님, 환영합니다!
       </div>
 
-      <div className="flex gap-5 border-b border-gray-200 mb-5">
+      <div className={styles.tabs}>
         <button 
-          className={`py-2.5 text-base bg-none border-none border-b-2 cursor-pointer transition-all ${
-            activeTab === "posts" 
-              ? "text-gray-900 border-gray-900 font-bold" 
-              : "text-gray-500 border-transparent hover:text-gray-900"
-          }`}
+          className={`${styles.tab} ${activeTab === "posts" ? styles.active : ""}`}
           onClick={() => setActiveTab("posts")}
         >
           내가 쓴 글
         </button>
         <button 
-          className={`py-2.5 text-base bg-none border-none border-b-2 cursor-pointer transition-all ${
-            activeTab === "comments" 
-              ? "text-gray-900 border-gray-900 font-bold" 
-              : "text-gray-500 border-transparent hover:text-gray-900"
-          }`}
+          className={`${styles.tab} ${activeTab === "comments" ? styles.active : ""}`}
           onClick={() => setActiveTab("comments")}
         >
           내가 쓴 댓글
         </button>
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className={styles.list}>
         {activeTab === "posts" ? (
           <>
-            <div className="flex flex-col gap-3">
+            <div className={styles.list}>
               {posts.length === 0 ? (
-                <div className="text-center text-gray-400 p-10 bg-gray-50 rounded-lg">
-                  작성한 게시글이 없습니다.
+                <div className={styles.empty}>
+                  아직 작성한 게시글이 없습니다.
                 </div>
               ) : (
                 posts.map((post) => (
@@ -131,27 +124,26 @@ export default function MyPage() {
                 ))
               )}
             </div>
-            <PageNation page={postPage} totalPages={postTotalPages} onPageChange={setPostPage} />
+            {posts.length > 0 && (
+               <PageNation page={postPage} totalPages={postTotalPages} onPageChange={setPostPage} />
+            )}
           </>
         ) : (
-          <div className="flex flex-col gap-3">
+          <div className={styles.list}>
             {comments.length === 0 ? (
-              <div className="text-center text-gray-400 p-10 bg-gray-50 rounded-lg">
-                작성한 댓글이 없습니다.
+              <div className={styles.empty}>
+                아직 작성한 댓글이 없습니다.
               </div>
             ) : (
               comments.map((comment) => (
-                <div key={comment.id} className="bg-white p-4 border border-gray-200 rounded-lg">
-                  <div className="flex justify-between mb-2 text-[13px] text-gray-500">
-                    <span className="text-gray-500">
-                      {new Date(comment.createdAt).toLocaleDateString()}
-                    </span>
-                    <span className="font-semibold text-gray-600">
+                <div key={comment.id} className={styles.commentItem}>
+                  <div className={styles.commentMeta}>
+                    <span className={styles.commentTarget}>
                       To:{" "}
                       {comment.post ? (
                         <Link 
                           href={`/post/${comment.postId}`} 
-                          className="text-gray-600 no-underline cursor-pointer hover:underline hover:text-gray-900"
+                          className={styles.link}
                         >
                           {comment.post.title}
                         </Link>
@@ -159,8 +151,11 @@ export default function MyPage() {
                         "삭제된 게시글"
                       )}
                     </span>
+                    <span>
+                      {new Date(comment.createdAt).toLocaleDateString()}
+                    </span>
                   </div>
-                  <div className="text-[15px] text-gray-800 leading-relaxed">
+                  <div className={styles.commentBody}>
                     {comment.content}
                   </div>
                 </div>

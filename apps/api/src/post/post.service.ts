@@ -42,6 +42,14 @@ export class PostService {
     return { posts, total, page, limit, totalPages: Math.ceil(total / limit) };
   }
 
+  async findBest(limit: number = 3) {
+    return this.prisma.post.findMany({
+      take: limit,
+      orderBy: { likes: 'desc' },
+      include: { user: { select: { userName: true } } },
+    });
+  }
+
   async findMyPosts(userId: number, page: number = 1, limit: number = 10) {
     const skip = (page - 1) * limit;
     const [posts, total] = await Promise.all([

@@ -8,6 +8,7 @@ import CommentForm from "@/components/comment/CommentForm";
 import LikeButton from "./LikeButton";
 import PostAction from "@/components/post/PostAction";
 import { postApi } from "@/lib/postApi";
+import { Router } from "next/router";
 
 type PostDetailProps = {
   postId: number;
@@ -29,7 +30,9 @@ export default function PostDetail({ postId }: PostDetailProps) {
   const [refreshComments, setRefreshComments] = useState(0);
 
   const toggleRefresh = () => setRefreshComments((prev) => prev + 1);
-
+  const goBack = () => {
+    window.history.back();
+  };
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -49,9 +52,9 @@ export default function PostDetail({ postId }: PostDetailProps) {
 
   return (
     <div className={styles.wrap}>
-      <Link href="/" className={styles.back}>
+      <div onClick={goBack} className={styles.back}>
         ◀︎ 목록으로
-      </Link>
+      </div>
 
       <h1 className={styles.title}>{post.title}</h1>
       <div className={styles.meta}>

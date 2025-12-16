@@ -56,57 +56,35 @@ export default function PostWriteForm({mode = "create", initialTitle = "", initi
 
     return (
         <div className={styles.wrap}>
-            <div className={styles.header}>
-                <div className={styles.titleBlock}>
-                    <h1 className={styles.h1}>{ui.pageTitle}</h1>
+            <button type="button" className={styles.backBtn} onClick={() => router.back()}>
+                ← 취소하고 돌아가기
+            </button>
+
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <input
+                    id="title"
+                    className={styles.titleInput}
+                    type="text"
+                    placeholder="제목을 입력하세요"
+                    maxLength={80}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+                
+                <textarea
+                    id="content"
+                    className={styles.textarea}
+                    placeholder="당신의 이야기를 적어보세요..."
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                />
+
+                <div className={styles.actions}>
+                    <button type="submit" className={styles.btnSubmit}>
+                        {ui.submitText}
+                    </button>
                 </div>
-            </div>
-
-            <section className={styles.card}>
-                <form className={styles.form} onSubmit={handleSubmit}>
-                    <div className={styles.field}>
-                        <label className={styles.label} htmlFor="title">
-                            제목
-                        </label>
-                        <input
-                            id="title"
-                            className={styles.input}
-                            type="text"
-                            placeholder="제목을 입력하세요"
-                            maxLength={80}
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                        />
-                        <div className={styles.hint}>최대 80자</div>
-                    </div>
-
-                    <div className={styles.field}>
-                        <label className={styles.label} htmlFor="content">
-                        내용
-                        </label>
-                        <textarea
-                            id="content"
-                            className={styles.textarea}
-                            placeholder="내용을 입력하세요"
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}
-                        />
-                    </div>
-                </form>
-            </section>
-
-            <div className={styles.actions}>
-                <button type="button" className={styles.btnCancel} onClick={() => router.back()}>
-                    취소
-                </button>
-
-                <button type="button" className={styles.btnSubmit} onClick={() => {
-                    const form = document.querySelector("form");
-                    form?.dispatchEvent(new Event("submit", {cancelable: true, bubbles: true}));
-                }}>
-                    {ui.submitText}
-                </button>
-            </div>
+            </form>
         </div>
     );
 }

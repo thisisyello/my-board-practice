@@ -1,29 +1,31 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
 .btn {
-  border: 1px solid #e5e7eb;
-  background: #ffffff;
-  color: #1f2937;
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 800;
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
 
 .btn:hover {
-  background: #fff4cc;
+  background: #f3f4f6;
+  color: #111827;
 }
 
 .danger {
-  border-color: #fca5a5;
+  color: #ef4444;
 }
 
 .danger:hover {
-  background: #fee2e2;
+  background: #fef2f2;
+  color: #dc2626;
 }

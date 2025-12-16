@@ -13,7 +13,6 @@ export default function BoardListItem({id, title, author, date, likes=0}: BoardL
   return (
     <Link href={`/post/${id}`} className={styles.item}>
       <div className={styles.left}>
-        <span className={styles.dot} />
         <span className={styles.title}>{title}</span>
       </div>
 

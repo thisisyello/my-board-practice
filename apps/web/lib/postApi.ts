@@ -22,6 +22,10 @@ export const postApi = {
         const response = await api.get(`/post/my?page=${page}&limit=10`);
         return response.data;
     },
+    getBest: async (limit: number = 3) => {
+        const response = await api.get(`/post/best?limit=${limit}`);
+        return response.data;
+    },
     getOne: async (id: number) => {
         const response = await api.get(`/post/${id}`);
         return response.data;

@@ -18,9 +18,8 @@ export default function BestBoardSection() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const data = await postApi.getAll();
-        const sorted = [...data.posts].sort((a, b) => (b.likes || 0) - (a.likes || 0));
-        setPosts(sorted.slice(0, 3));
+        const data = await postApi.getBest();
+        setPosts(data);
       } catch (error) {
         console.error("Failed to fetch posts:", error);
       }
