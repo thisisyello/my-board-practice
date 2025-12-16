@@ -18,3 +18,34 @@ model Exam {
   id     Int @id @default(autoincrement())
   number Int
 }
+
+model User {
+  id        Int       @id @default(autoincrement())
+  userName  String
+  userId    String    @unique
+  password  String
+  posts     Post[]
+  comments  Comment[]
+  createdAt DateTime  @default(now())
+}
+
+model Post {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  title     String
+  likes     Int       @default(0)
+  content   String
+  comments  Comment[]
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  postId    Int
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  content   String
+  createdAt DateTime
+  user      User     @relation(fields: [userId], references: [id])
+}

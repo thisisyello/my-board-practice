@@ -1,12 +1,36 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import BoardListItem from "./BoardListItem";
 import styles from "./BoardListSection.module.css";
 import PageNation from "@/components/board/PageNation"
+import { postApi } from "@/lib/postApi";
+
+type Post = {
+  id: number;
+  title: string;
+  user: { userName: string };
+  createdAt: string;
+  likes: number;
+};
 
 export default function PostListSection() {
   const [page, setPage] = useState(1);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const data = await postApi.getAll(page);
+        setPosts(data.posts);
+        setTotalPages(data.totalPages);
+      } catch (error) {
+        console.error("Failed to fetch posts:", error);
+      }
+    };
+    fetchPosts();
+  }, [page]);
 
   return (
     <section className={styles.section}>
@@ -18,78 +42,22 @@ export default function PostListSection() {
       </div>
 
       <div className={styles.listBox}>
-        <BoardListItem
-          id={1}
-          title="title1"
-          author="name"
-          date="2025.12.14"
-          likes={0}
-        />
-        <BoardListItem
-          id={2}
-          title="title2"
-          author="name"
-          date="2025.12.14"
-          likes={0}
-        />
-        <BoardListItem
-          id={3}
-          title="title3"
-          author="name"
-          date="2025.12.14"
-          likes={0}
-        />
-        <BoardListItem
-          id={4}
-          title="title4"
-          author="name"
-          date="2025.12.14"
-          likes={0}
-        />
-        <BoardListItem
-          id={5}
-          title="title5"
-          author="name"
-          date="2025.12.14"
-          likes={0}
-        />
-        <BoardListItem
-          id={6}
-          title="title6"
-          author="name"
-          date="2025.12.14"
-          likes={0}
-        />
-        <BoardListItem
-          id={7}
-          title="title7"
-          author="name"
-          date="2025.12.14"
-          likes={0}
-        />
-        <BoardListItem
-          id={8}
-          title="title8"
-          author="name"
-          date="2025.12.14"
-          likes={0}
-        />
-        <BoardListItem
-          id={9}
-          title="title9"
-          author="name"
-          date="2025.12.14"
-          likes={0}
-        />
-        <BoardListItem
-          id={10}
-          title="title10"
-          author="name"
-          date="2025.12.14"
-          likes={0}
-        />
+        {posts.length === 0 ? (
+          <div className={styles.empty}>게시글이 없습니다.</div>
+        ) : (
+          posts.map((post) => (
+            <BoardListItem
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              author={post.user?.userName || "익명"}
+              date={new Date(post.createdAt).toLocaleDateString()}
+              likes={post.likes || 0}
+            />
+          ))
+        )}
       </div>
-      <PageNation page={page} totalPages={5} onPageChange={setPage} />
+      <PageNation page={page} totalPages={totalPages} onPageChange={setPage} />
     </section>
   );
 }

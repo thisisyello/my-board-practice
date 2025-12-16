@@ -1,5 +1,6 @@
 import PostDetail from "@/components/post/PostDetail";
 
-export default function PostDetailPage() {
-  return <PostDetail />;
+export default async function PostDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  return <PostDetail postId={Number(id)} />;
 }

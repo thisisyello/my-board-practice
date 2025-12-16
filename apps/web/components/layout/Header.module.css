@@ -26,6 +26,7 @@
 .actions {
     display: flex;
     gap: 16px;
+    align-items: center;
 }
 
 .login {
@@ -42,6 +43,21 @@
     color: #e6b200;
     border: 2px solid #e6b200;
 }
+.logout {
+    font-size: 14px;
+    color: #ffffff;
+    background: #ffc83d;
+    border: 2px solid #ffc83d;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.logout:hover {
+    background: #e6b200;
+    border: 2px solid #e6b200;
+}
 
 .signup {
     font-size: 14px;
@@ -56,4 +72,14 @@
 .signup:hover {
     background: #e6b200;
     border: 2px solid #e6b200;
+}
+
+.userName {
+    color: #111827;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.userName:hover {
+    text-decoration: underline;
 }

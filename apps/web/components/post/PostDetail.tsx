@@ -1,19 +1,51 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import styles from "./PostDetail.module.css";
 import CommentList from "@/components/comment/CommentList";
 import CommentForm from "@/components/comment/CommentForm";
 import LikeButton from "./LikeButton";
 import PostAction from "@/components/post/PostAction";
+import { postApi } from "@/lib/postApi";
 
-export default function PostDetail() {
-  const post = {
-    id: 1,
-    title: "title",
-    author: "yello",
-    date: "2025.03.01",
-    content:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    likes: 0,
-  };
+type PostDetailProps = {
+  postId: number;
+};
+
+type Post = {
+  id: number;
+  title: string;
+  content: string;
+  userId: number;
+  user: { userName: string };
+  createdAt: string;
+  likes: number;
+};
+
+export default function PostDetail({ postId }: PostDetailProps) {
+  const [post, setPost] = useState<Post | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [refreshComments, setRefreshComments] = useState(0);
+
+  const toggleRefresh = () => setRefreshComments((prev) => prev + 1);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const data = await postApi.getOne(postId);
+        setPost(data);
+      } catch (error) {
+        console.error("Failed to fetch post:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPost();
+  }, [postId]);
+
+  if (loading) return <div className={styles.loading}>로딩 중...</div>;
+  if (!post) return <div className={styles.error}>게시글을 찾을 수 없습니다.</div>;
 
   return (
     <div className={styles.wrap}>
@@ -24,21 +56,21 @@ export default function PostDetail() {
       <h1 className={styles.title}>{post.title}</h1>
       <div className={styles.meta}>
         <div className={styles.metaLeft}>
-          {post.author} · {post.date}
+          {post.user.userName} · {new Date(post.createdAt).toLocaleDateString()}
         </div>
 
         <div className={styles.metaRight}>
-          <LikeButton initialCount={post.likes} />
-          <PostAction postId={post.id} />
+          <LikeButton postId={post.id} initialCount={post.likes} />
+          <PostAction postId={post.id} authorId={post.userId} />
         </div>
       </div>
 
       <div className={styles.card}>
-        {post.content}
+        <div style={{ whiteSpace: "pre-wrap" }}>{post.content}</div>
       </div>
 
-      <CommentList />
-      <CommentForm />
+      <CommentList postId={post.id} refreshKey={refreshComments} />
+      <CommentForm postId={post.id} onCommentAdded={toggleRefresh} />
     </div>
   );
 }

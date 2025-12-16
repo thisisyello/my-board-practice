@@ -2,13 +2,19 @@
 
 import { useRouter } from "next/navigation";
 import styles from "./PostAction.module.css";
+import { useAuthStore } from "@/store/authStore";
 
 type PostActionProps = {
   postId: number | string;
+  authorId: number;
 };
 
-export default function PostAction({ postId }: PostActionProps) {
+export default function PostAction({ postId, authorId }: PostActionProps) {
   const router = useRouter();
+  const { user } = useAuthStore();
+
+  const isAuthor = user?.id === authorId;
+  if (!isAuthor) return null;
 
   const onEdit = () => {
     router.push(`/post/${postId}/edit`);

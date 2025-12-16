@@ -1,7 +1,32 @@
+"use client";
+import { useEffect, useState } from "react";
 import BoardCard from "./BoardCard";
 import styles from "./NewBoardSection.module.css";
+import { postApi } from "@/lib/postApi";
+
+type Post = {
+  id: number;
+  title: string;
+  user: { userName: string };
+  createdAt: string;
+  likes: number;
+};
 
 export default function NewBoardSection() {
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const data = await postApi.getAll();
+        setPosts(data.posts.slice(0, 3));
+      } catch (error) {
+        console.error("Failed to fetch posts:", error);
+      }
+    };
+    fetchPosts();
+  }, []);
+
   return (
     <section className={styles.section}>
       <div className={styles.header}>
@@ -10,27 +35,20 @@ export default function NewBoardSection() {
       </div>
 
       <div className={styles.grid}>
-        <BoardCard
-          id = {1}
-          title="title1"
-          author="name"
-          date="2025.12.14"
-          likes={0}
-        />
-        <BoardCard
-          id = {2}
-          title="title2"
-          author="name"
-          date="2025.12.14"
-          likes={0}
-        />
-        <BoardCard
-          id = {3}
-          title="title3"
-          author="name"
-          date="2025.12.14"
-          likes={0}
-        />
+        {posts.length === 0 ? (
+           <div style={{ padding: "20px", color: "#666" }}>게시글이 없습니다.</div>
+        ) : (
+          posts.map((post) => (
+            <BoardCard
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              author={post.user?.userName || "익명"}
+              date={new Date(post.createdAt).toLocaleDateString()}
+              likes={post.likes || 0}
+            />
+          ))
+        )}
       </div>
     </section>
   );

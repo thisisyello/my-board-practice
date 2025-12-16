@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import styles from "./PostWriteForm.module.css";
+import { postApi } from "@/lib/postApi";
+import toast from "react-hot-toast";
 
 type PostWriteMode = "create" | "edit";
 
@@ -10,10 +12,10 @@ type PostWriteFormProps = {
     mode?: PostWriteMode;
     initialTitle?: string;
     initialContent?: string;
-    onSubmit?: (data: { title: string; content: string }) => void;
+    postId?: number;
 };
 
-export default function PostWriteForm({mode = "create", initialTitle = "", initialContent = "", onSubmit}: PostWriteFormProps) {
+export default function PostWriteForm({mode = "create", initialTitle = "", initialContent = "", postId}: PostWriteFormProps) {
     const router = useRouter();
 
     const [title, setTitle] = useState(initialTitle);
@@ -27,23 +29,29 @@ export default function PostWriteForm({mode = "create", initialTitle = "", initi
         };
     }, [mode]);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
         const trimmedTitle = title.trim();
         const trimmedContent = content.trim();
-
         if (!trimmedTitle || !trimmedContent) {
-            alert("제목과 내용을 입력해줘!");
+            toast.error("제목과 내용을 입력해주세요.");
             return;
         }
-
-        if (onSubmit) {
-            onSubmit({ title: trimmedTitle, content: trimmedContent });
-            return;
+        try {
+            if (mode === "create") {
+                await postApi.create({ title: trimmedTitle, content: trimmedContent });
+                toast.success("게시글이 등록되었습니다!");
+                router.push("/");
+            }
+            if (mode === "edit" && postId) {
+                await postApi.update(postId, { title: trimmedTitle, content: trimmedContent });
+                toast.success("게시글이 수정되었습니다!");
+                router.push(`/post/${postId}`);
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("게시글 등록에 실패했습니다.");
         }
-
-        alert(`${ui.submitText} 아직 구현 몬함`);
     };
 
     return (
