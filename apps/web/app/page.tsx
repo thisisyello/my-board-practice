@@ -1,5 +1,13 @@
-import ExamPlayground from "@/components/exam-playground";
+import BestBoardSection from "@/components/board/BestBoardSection";
+import NewBoardSection from "@/components/board/NewBoardSecton";
+import BoardListSection from "@/components/board/BoardListSection";
 
-export default function Home() {
-  return <ExamPlayground />;
+export default function HomePage() {
+  return (
+    <>
+      <BestBoardSection />
+      <NewBoardSection />
+      <BoardListSection />
+    </>
+  );
 }

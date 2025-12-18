@@ -1,0 +1,50 @@
+.wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+    background-color: #f9fafb;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 40px;
+    text-decoration: none;
+    letter-spacing: -0.03em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo::after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: #fbbf24;
+    border-radius: 50%;
+    margin-top: 6px;
+}
+
+.card {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    padding: 40px;
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 32px 0;
+    text-align: center;
+    letter-spacing: -0.02em;
+}

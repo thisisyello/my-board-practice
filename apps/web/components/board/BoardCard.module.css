@@ -1,0 +1,55 @@
+.item {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid transparent;
+}
+
+.item:hover .card {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+    border-color: rgba(251, 191, 36, 0.4);
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    transition: color 0.2s;
+}
+
+.item:hover .title {
+    color: #000000;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #9ca3af;
+    font-weight: 500;
+}
+
+.like {
+    margin-left: auto;
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+}
