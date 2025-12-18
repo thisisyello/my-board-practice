@@ -74,7 +74,7 @@ export default function PostWriteForm({mode = "create", initialTitle = "", initi
                 <textarea
                     id="content"
                     className={styles.textarea}
-                    placeholder="당신의 이야기를 적어보세요..."
+                    placeholder="내용을 입력하세요"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                 />

@@ -33,5 +33,9 @@ export const postApi = {
     like: async (id: number, like: boolean) => {
         const response = await api.patch(`/post/${id}/like`, { like });
         return response.data;
+    },
+    delete: async (id: number) => {
+        const response = await api.delete(`/post/${id}`);
+        return response.data;
     }
 }

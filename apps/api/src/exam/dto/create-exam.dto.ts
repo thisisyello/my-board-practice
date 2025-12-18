@@ -1,3 +1,3 @@
 export class CreateExamDto {
-    number: number;
+  number: number;
 }

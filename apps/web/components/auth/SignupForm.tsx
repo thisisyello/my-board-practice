@@ -62,11 +62,11 @@ export default function SignupForm() {
           id="password" 
           className={styles.input} 
           type="password" 
-          placeholder="••••• (6자 이상)" 
+          placeholder="••••• (4자 이상)" 
           autoComplete="new-password"
           {...register("password", { 
             required: "비밀번호를 입력해주세요",
-            minLength: { value: 6, message: "비밀번호는 6자 이상이어야 합니다" }
+            minLength: { value: 4, message: "비밀번호는 4자 이상이어야 합니다" }
           })}
         />
         {errors.password && <span className={styles.error}>{errors.password.message}</span>}

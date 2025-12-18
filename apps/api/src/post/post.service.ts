@@ -1,4 +1,8 @@
-import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { createPostDto } from './dto/createPost.dto';
 import { UpdatePostDto } from './dto/updatePost.dto';
@@ -17,8 +21,8 @@ export class PostService {
   }
   async update(id: number, dto: UpdatePostDto, userId: number) {
     const post = await this.prisma.post.findUnique({ where: { id } });
-    if(!post) throw new NotFoundException('게시글을 찾을 수 없습니다.');
-    if(post.userId !== userId) {
+    if (!post) throw new NotFoundException('게시글을 찾을 수 없습니다.');
+    if (post.userId !== userId) {
       throw new ForbiddenException('본인이 작성한 글만 수정할 수 있습니다.');
     }
     return this.prisma.post.update({
@@ -85,5 +89,15 @@ export class PostService {
       where: { id },
       data: { likes: newLikes },
     });
+  }
+
+  async delete(id: number, userId: number) {
+    const post = await this.prisma.post.findUnique({ where: { id } });
+    if (!post) throw new NotFoundException('게시글을 찾을 수 없습니다.');
+    if (post.userId !== userId) {
+      throw new ForbiddenException('본인이 작성한 글만 삭제할 수 있습니다.');
+    }
+    await this.prisma.post.delete({ where: { id } });
+    return { success: true };
   }
 }

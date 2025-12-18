@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import styles from "./PostAction.module.css";
 import { useAuthStore } from "@/store/authStore";
+import { postApi } from "@/lib/postApi";
 
 type PostActionProps = {
   postId: number | string;
@@ -20,14 +21,18 @@ export default function PostAction({ postId, authorId }: PostActionProps) {
     router.push(`/post/${postId}/edit`);
   };
 
-  const onDelete = () => {
+  const onDelete = async () => {
     const ok = window.confirm("정말 삭제할까요?");
     if (!ok) return;
 
-    // 나중에 API 붙이면 여기서 DELETE 요청
-    alert(`삭제: postId=${postId}`);
-    router.push("/");
-    router.refresh();
+    try {
+      await postApi.delete(Number(postId));
+      router.push("/");
+      router.refresh();
+    } catch (error) {
+      console.error(error);
+      alert("삭제에 실패했습니다. 다시 시도해주세요.");
+    }
   };
 
   return (

@@ -1,4 +1,16 @@
-import { Controller, Post, Get, Body, UseGuards, Req, Patch, Param, ParseIntPipe, Query } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Get,
+  Body,
+  UseGuards,
+  Req,
+  Patch,
+  Param,
+  ParseIntPipe,
+  Query,
+  Delete,
+} from '@nestjs/common';
 import { PostService } from './post.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { createPostDto } from './dto/createPost.dto';
@@ -24,7 +36,10 @@ export class PostController {
   }
 
   @Get()
-  async findAll(@Query('page') page: string = '1', @Query('limit') limit: string = '10') {
+  async findAll(
+    @Query('page') page: string = '1',
+    @Query('limit') limit: string = '10',
+  ) {
     return this.postService.findAll(+page, +limit);
   }
 
@@ -52,5 +67,11 @@ export class PostController {
   @Patch(':id/like')
   like(@Param('id') id: string, @Body('like') like: boolean) {
     return this.postService.like(+id, like);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete(':id')
+  delete(@Param('id', ParseIntPipe) id: number, @Req() req) {
+    return this.postService.delete(id, req.user.id);
   }
 }

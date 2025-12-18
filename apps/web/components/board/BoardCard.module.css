@@ -18,7 +18,7 @@
 }
 
 .item:hover .card {
-    transform: translateY(-4px);
+    transform: translateY(-1px);
     box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
     border-color: rgba(251, 191, 36, 0.4);
 }
